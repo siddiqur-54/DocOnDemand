@@ -25,4 +25,6 @@ admin.site.index_title = "Welcome to DocOnDemand Portal"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('appointment.urls')),
+    path('', include('doctor.urls')),
+    path('', include('patient.urls')),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
