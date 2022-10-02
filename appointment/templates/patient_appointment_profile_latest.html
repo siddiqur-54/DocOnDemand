@@ -1,0 +1,102 @@
+{% extends 'patient_navigation.html' %}
+
+{% block title %}Latest Appointment Profile{%endblock title%}
+
+{% block head %}
+
+<link href="/static/css/patient_appointment_profile.css" rel="stylesheet">
+
+{% endblock head %}
+
+{% block body %}
+
+<marquee class="bg-secondary text-light" width="100%" direction="right" height="25px">
+    Latest Appointment Profile
+</marquee>
+<div class="container emp-profile">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="profile-img">
+                <img src="{{appointment.doctor.image.url}}"alt="">
+            </div>
+            <div class="employer-info">
+                <label for="">Posted By</label>
+                <h6>{{appointment.doctor.user.first_name}} {{appointment.doctor.user.last_name}}, {{appointment.doctor.medical}}</h6>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="profile-head">
+                <p>Posted On:    {{appointment.post_date}}</p>
+                <h5>
+                    {{appointment.title}}, {{appointment.doctor.medical}}
+                </h5>
+                <h6>
+                    Appointment Deadline:    {{appointment.deadline}}
+                </h6>
+                <ul class="nav nav-tabs about" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <button class="nav-link active disabled" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">About Appointment</button>
+                    </li>
+                </ul>              
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <a style="width: 150px; padding: 5px;" href="{% url 'patient_take_appointment' appointment.id %}" class="btn btn-success btn-sm">TAKE APPOINTMENT</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="profile-work">
+                <div>
+                    <label for="">Appointment Description</label>
+                    <p>{{appointment.description}}</p>
+                </div>
+                <div>
+                    <label for="">Post Date</label>
+                    <p>{{appointment.post_date}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="tab-content profile-tab" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Appointment Date</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{appointment.date}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Appointment Time</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{appointment.time}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Appointment Fee</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{appointment.fee}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Appointment Location</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{appointment.location}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>         
+</div>
+
+{% endblock body %}

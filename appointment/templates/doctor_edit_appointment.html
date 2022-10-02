@@ -1,0 +1,67 @@
+{% extends 'doctor_navigation.html' %}
+
+{% block title %}Edit Appointment | Doctor Home{%endblock title%}
+
+{% block body %}
+
+<marquee class="bg-secondary text-light" width="100%" direction="right" height="25px">
+  EDIT APPOINTMENT
+</marquee>
+<div class="container" style="width:45%">
+    <form method="post">
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label for="title">Appointment Title</label>
+        <input type="text" class="form-control" id="title" name="title" placeholder="Enter Appoointment Title" value="{{appointment.title}}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="description">Appointment Description</label>
+        <input type="text" class="form-control" id="description" name="description" placeholder="Enter Appointment Description" value="{{appointment.description}}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="date">Appointment Date</label> [{{appointment.date}}]
+        <input type="date" class="form-control" id="date" name="date" placeholder="Enter Appointment Date" value="{{appointment.date}}">
+    </div>
+
+    <div class="form-group">
+        <label for="time">Appointment Time</label>
+        <input type="time" class="form-control" id="time" name="time" placeholder="Enter Appointment time" value="{{appointment.time}}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="deadline">Appointment Deadline</label> [{{appointment.deadline}}]
+        <input type="date" class="form-control" id="deadline" name="deadline" placeholder="" value="{{appointment.deadline}}">
+    </div>
+
+    <div class="form-group">
+        <label for="fee">Appointment Fee</label>
+        <input type="text" class="form-control" id="fee" name="fee" placeholder="Enter Appointment Fee" value="{{appointment.fee}}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="location">Location</label>
+        <input type="text" class="form-control" id="location" name="location" placeholder="Enter Appointment Location" value="{{appointment.location}}" required>
+    </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-sm mx-auto d-block">POST</button>
+    </form>
+
+    {% ifequal error "no" %}
+    <script>
+        window.location.replace("{% url 'doctor_appointment_profile' appointment.id %}");
+    </script>
+    {% endifequal %}
+
+    {% ifequal error "yes" %}
+    <script>
+        alert("Appointment Editing Failed");
+        window.location.href("{% url 'doctor_edit_appointment' appointment.id %}");
+    </script>
+    {% endifequal %}
+    
+</div>
+{% endblock body %}

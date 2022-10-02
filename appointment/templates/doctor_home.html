@@ -1,0 +1,104 @@
+{% extends 'doctor_navigation.html' %}
+
+{% block title %}Doctor Home{%endblock title%}
+
+{% block head %}
+
+<link href="/static/css/doctor_home.css" rel="stylesheet">
+
+{% endblock head %}
+
+{% block body %}
+
+<marquee class="bg-secondary text-light" width="100%" direction="right" height="25px">
+  DOCTOR HOME
+</marquee>
+
+<div class="container emp-profile">
+    <form method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <img src="{{doctor.image.url}}"alt="">
+                    <!--
+                    <div class="file btn btn-lg btn-primary">
+                        Change Photo
+                        <input type="file" name="file"/>
+                    </div>
+                    -->
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                    <h5>
+                        {{doctor.user.first_name}} {{doctor.user.last_name}}
+                    </h5>
+                    <h6>
+                        {{doctor.position}}, {{doctor.medical}}
+                    </h6>
+                    <ul class="nav nav-tabs about" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <button class="nav-link active disabled" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">About</button>
+                        </li>
+                    </ul> 
+                </div>
+            </div>
+            <div class="col-md-2">
+                <a style="margin-bottom: 10px; width: 150px; padding: 5px;" href="/doctor_edit_profile" class="btn btn-success btn-sm">EDIT MY PROFILE</a>
+                <a style="margin-bottom: 10px; width: 150px; padding: 5px;" href="/doctor_change_password" class="btn btn-secondary btn-sm">CHANGE MY PASSWORD</a>
+                <a style="width: 150px; padding: 5px;" href="/doctor_delete_own" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure?')">DELETE MY ACCOUNT</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-work">
+                    <div>
+                        <label for="">Bio</label>
+                        <p>I am Good</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Contact</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{doctor.contact}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{doctor.user.username}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Gender</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{doctor.gender}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Signed In As</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{doctor.type}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>           
+</div>
+
+{% endblock body %}

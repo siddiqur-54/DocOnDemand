@@ -1,0 +1,50 @@
+{% extends 'patient_navigation.html' %}
+
+{% block title %}Taken Appointments | Patient Home{%endblock title%}
+{% block head %}
+<link href="/static/css/table.css" rel="stylesheet">
+{% endblock head %}
+
+{% block body %}
+
+<marquee class="bg-secondary text-light" width="100%" direction="right" height="25px">
+  APPOINTMENTS TAKEN
+</marquee>
+<div class="container">
+<table class=" my-4 table table-hover table-striped table-bordered styled-table" id="example">
+    <caption>List Of My Taken Appointments</caption>
+    <thead>
+        <tr>
+            <th>Serial No.</th>
+            <th>Appointment Title</th>
+            <th>Appointment Description</th>
+            <th>Post Date</th>
+            <th>Appointment Deadline</th>
+            <th>Appointment Date</th>
+            <th>Appointment Time</th>
+            <th>Appointment Fee</th>
+            <th>Appointment Location</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for i in appointment %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.title}}</td>
+            <td>{{i.description}}</td>
+            <td>{{i.post_date}}</td>
+            <td>{{i.deadline}}</td>
+            <td>{{i.date}}</td>
+            <td>{{i.time}}</td>
+            <td>{{i.fee}}</td>
+            <td>{{i.location}}</td>
+            <td><a href="{% url 'patient_appointment_profile_taken' i.id %}" class="btn btn-success btn-sm">VIEW DETAILS</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% endblock body %}

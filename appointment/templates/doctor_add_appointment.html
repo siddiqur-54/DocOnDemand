@@ -1,0 +1,68 @@
+{% extends 'doctor_navigation.html' %}
+
+{% block title %}Add Appointment | Doctor Home{%endblock title%}
+
+{% block body %}
+
+<marquee class="bg-secondary text-light" width="100%" direction="right" height="25px">
+  ADD APPOINTMENT
+</marquee>
+<div class="container" style="width:45%">
+    <form method="post">
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label for="title">Appointment Title</label>
+        <input type="text" class="form-control" id="title" name="title" placeholder="Enter Appointment Title" required>
+    </div>
+
+    <div class="form-group">
+        <label for="description">Appointment Description</label>
+        <input type="text" class="form-control" id="description" name="description" placeholder="Enter Appointment Description" required>
+    </div>
+
+    <div class="form-group">
+        <label for="adate">Appointment Date</label>
+        <input type="date" class="form-control" id="adate" name="adate" placeholder="" required>
+    </div>
+
+    <div class="form-group">
+        <label for="atime">Appointment Time</label>
+        <input type="time" class="form-control" id="atime" name="atime" placeholder="" required>
+    </div>
+
+    <div class="form-group">
+        <label for="deadline">Appointment Deadline</label>
+        <input type="date" class="form-control" id="deadline" name="deadline" placeholder="" required>
+    </div>
+
+    <div class="form-group">
+        <label for="fee">Appointment Fee</label>
+        <input type="text" class="form-control" id="fee" name="fee" placeholder="Enter Appointment Fee" required>
+    </div>
+
+    <div class="form-group">
+        <label for="location">Location</label>
+        <input type="text" class="form-control" id="location" name="location" placeholder="Enter Appointment Location" required>
+    </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-sm mx-auto d-block">POST</button>
+    </form>
+
+    {% ifequal error "no" %}
+    <script>
+        alert("Appointment Posted Successfully");
+        window.location.replace("doctor_appointments_list");
+    </script>
+    {% endifequal %}
+
+    {% ifequal error "yes" %}
+    <script>
+        alert("Appointment Posting Failed");
+        window.location.replace("doctor_add_appointment");
+    </script>
+    {% endifequal %}
+    
+</div>
+{% endblock body %}

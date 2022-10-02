@@ -1,0 +1,101 @@
+{% extends 'doctor_navigation.html' %}
+
+{% block title %}Appointment Profile{%endblock title%}
+
+{% block head %}
+
+<link href="/static/css/doctor_appointment_profile.css" rel="stylesheet">
+
+{% endblock head %}
+
+{% block body %}
+
+<marquee class="bg-secondary text-light" width="100%" direction="right" height="25px">
+    Appointment Profile
+</marquee>
+
+<div class="container emp-profile">
+    <form method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-4">
+                
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                    <p>Posted On:    {{appointment.post_date}}</p>
+                    <h5>
+                        {{appointment.title}}, {{appointment.doctor.medical}}
+                    </h5>
+                    <h6>
+                        Appointment Deadline:    {{appointment.deadline}}
+                    </h6>
+                    <ul class="nav nav-tabs about" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <button class="nav-link active disabled" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">About Appointment</button>
+                        </li>
+                    </ul>              
+                </div>
+            </div>
+            <div class="col-md-2">
+                <a style="margin-bottom: 10px; width: 150px; padding: 5px;" href="{% url 'doctor_appointment_takers' appointment.id %}" class="btn btn-success btn-sm">APPOINTMENT TAKERS</a>
+                <a style="margin-bottom: 10px; width: 150px; padding: 5px;" href="{% url 'doctor_edit_appointment' appointment.id %}" class="btn btn-secondary btn-sm">EDIT THIS APPOINTMENT</a>
+                <a style="width: 150px; padding: 5px;" href="{% url 'doctor_delete_appointment' appointment.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure?')">DELETE THIS APPOINTMENT</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-work">
+                    <div>
+                        <label for="">Appointment Description</label>
+                        <p>{{appointment.description}}</p>
+                    </div>
+                    <div>
+                        <label for="">Post Date</label>
+                        <p>{{appointment.post_date}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Appointment Date</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{appointment.date}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Appointment Time</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{appointment.time}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Appointment Fee</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{appointment.fee}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Appointment Location</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{appointment.location}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>           
+</div>
+
+{% endblock body %}
