@@ -1,26 +1,26 @@
-{% extends 'doctor_navigation.html' %}
+{% extends 'patient_navigation.html' %}
+{% load static %}
 
-{% block title %}Doctor Home{%endblock title%}
+{% block title %}Patient Home{%endblock title%}
 
 {% block head %}
 
-<link href="/static/css/doctor_home.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static 'css/doctor_home.css' %}">
 
 {% endblock head %}
 
 {% block body %}
 
 <marquee class="bg-secondary text-light" width="100%" direction="right" height="25px">
-  DOCTOR HOME
+  PATIENT HOME
 </marquee>
-
 <div class="container emp-profile">
     <form method="post">
         {% csrf_token %}
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <img src="{{doctor.image.url}}"alt="">
+                    <img src="{{patient.image.url}}"alt="">
                     <!--
                     <div class="file btn btn-lg btn-primary">
                         Change Photo
@@ -32,10 +32,10 @@
             <div class="col-md-6">
                 <div class="profile-head">
                     <h5>
-                        {{doctor.user.first_name}} {{doctor.user.last_name}}
+                        {{patient.user.first_name}} {{patient.user.last_name}}
                     </h5>
                     <h6>
-                        {{doctor.position}}, {{doctor.medical}}
+                        {{patient.blood_group}}
                     </h6>
                     <ul class="nav nav-tabs about" id="myTab" role="tablist">
                         <li class="nav-item">
@@ -45,17 +45,21 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <a style="margin-bottom: 10px; width: 150px; padding: 5px;" href="/doctor_edit_profile" class="btn btn-success btn-sm">EDIT MY PROFILE</a>
-                <a style="margin-bottom: 10px; width: 150px; padding: 5px;" href="/doctor_change_password" class="btn btn-secondary btn-sm">CHANGE MY PASSWORD</a>
-                <a style="width: 150px; padding: 5px;" href="/doctor_delete_own" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure?')">DELETE MY ACCOUNT</a>
+                <a style="margin-bottom: 10px; width: 150px; padding: 5px;" href="/patients/patient_edit_profile" class="btn btn-success btn-sm">EDIT MY PROFILE</a>
+                <a style="margin-bottom: 10px; width: 150px; padding: 5px;" href="/patients/patient_change_password" class="btn btn-secondary btn-sm">CHANGE MY PASSWORD</a>
+                <a style="width: 150px; padding: 5px;" href="/patients/patient_delete_own" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure?')">DELETE MY ACCOUNT</a>
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-work">
                     <div>
-                        <label for="">Bio</label>
-                        <p>I am Good</p>
+                        <label for="">Height</label>
+                        <p>{{patient.height}}</p>
+                    </div>
+                    <div>
+                        <label for="">Weight</label>
+                        <p>{{patient.weight}}</p>
                     </div>
                 </div>
             </div>
@@ -67,7 +71,7 @@
                                 <label>Contact</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{doctor.contact}}</p>
+                                <p>{{patient.contact}}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -75,7 +79,15 @@
                                 <label>Email</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{doctor.user.username}}</p>
+                                <p>{{patient.user.username}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Birth Date</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{patient.birth_date}}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -83,7 +95,7 @@
                                 <label>Gender</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{doctor.gender}}</p>
+                                <p>{{patient.gender}}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -91,7 +103,7 @@
                                 <label>Signed In As</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{doctor.type}}</p>
+                                <p>{{patient.type}}</p>
                             </div>
                         </div>
                     </div>
@@ -100,5 +112,4 @@
         </div>
     </form>           
 </div>
-
 {% endblock body %}

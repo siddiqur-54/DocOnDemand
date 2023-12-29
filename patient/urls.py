@@ -1,11 +1,11 @@
 
 from django.urls import path
 from appointment import views
+from patient import views
+
 
 urlpatterns = [
     path('', views.patient_login, name="patient_login"),
-    
-    path('patient_login', views.patient_login, name="patient_login"),
     path('patient_signup', views.patient_signup, name="patient_signup"),
     path('patient_home', views.patient_home, name="patient_home"),
     path('patient_appointments_taken', views.patient_appointments_taken, name="patient_appointments_taken"),
@@ -17,4 +17,5 @@ urlpatterns = [
     path('patient_edit_profile', views.patient_edit_profile, name="patient_edit_profile"),
     path('patient_appointment_profile_latest/<int:pid>', views.patient_appointment_profile_latest, name="patient_appointment_profile_latest"),
     path('patient_appointment_profile_taken/<int:pid>', views.patient_appointment_profile_taken, name="patient_appointment_profile_taken"),
+    path('patient_login', views.patient_login, name="patient_login"),
 ]

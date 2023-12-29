@@ -11,7 +11,7 @@ def doctor_view_profile_patient(request,pid):
         return redirect('employer_login')
     patient = Patient.objects.get(id=pid)
     d = {'patient': patient}
-    return render(request, 'doctor_view_profile_patient.html', d)
+    return render(request, 'doctors/doctor_view_profile_patient.html', d)
 
 
 def doctor_appointment_profile(request,pid):
@@ -19,7 +19,7 @@ def doctor_appointment_profile(request,pid):
         return redirect('doctor_login')
     appointment = Appointment.objects.get(id=pid)
     d = {'appointment': appointment}
-    return render(request, 'doctor_appointment_profile.html', d)
+    return render(request, 'doctors/doctor_appointment_profile.html', d)
 
 
 def doctor_change_password(request):
@@ -29,7 +29,6 @@ def doctor_change_password(request):
     if request.method=="POST":
         currentPass = request.POST['currentpassword']
         newPass = request.POST['newpassword']
-
         try:
             doctor = User.objects.get(id=request.user.id)
             if doctor.check_password(currentPass):
@@ -41,7 +40,7 @@ def doctor_change_password(request):
         except:
             error="yes"
     d = {'error': error}
-    return render(request, 'doctor_change_password.html', d)
+    return render(request, 'doctors/doctor_change_password.html', d)
 
 
 def doctor_home(request):
@@ -50,7 +49,7 @@ def doctor_home(request):
     user = request.user
     doctor = Doctor.objects.get(user=user)
     d = {'doctor': doctor}
-    return render(request, 'doctor_home.html', d)
+    return render(request, 'doctors/doctor_home.html', d)
 
 
 def doctor_edit_profile(request):
@@ -67,7 +66,6 @@ def doctor_edit_profile(request):
         medical = request.POST['medical']
         position = request.POST['position']
         specialities = request.POST['specialities']
-
         doctor.user.first_name = fname
         doctor.user.last_name = lname
         doctor.contact = contact
@@ -75,7 +73,6 @@ def doctor_edit_profile(request):
         doctor.medical = medical
         doctor.position = position
         doctor.specialities = specialities
-
         try:
             doctor.save()
             doctor.user.save()
@@ -83,7 +80,7 @@ def doctor_edit_profile(request):
         except:
             error="yes"
     d = {'doctor': doctor, 'error': error}
-    return render(request, 'doctor_edit_profile.html', d)
+    return render(request, 'doctors/doctor_edit_profile.html', d)
 
 
 def doctor_login(request):
@@ -105,7 +102,7 @@ def doctor_login(request):
         else:
             error="yes"
     d= {'error' : error}
-    return render(request, 'doctor_login.html',d)
+    return render(request, 'doctors/doctor_login.html',d)
 
 
 def doctor_logout(request):
@@ -119,29 +116,25 @@ def doctor_signup(request):
         fname = request.POST['fname']
         lname = request.POST['lname']
         email = request.POST['email']
-
         username = request.POST['email']
         password = request.POST['password']
-
         image = request.FILES['image']
         contact = request.POST['contact']
         gender = request.POST['gender']
         medical = request.POST['medical']
         position = request.POST['position']
-        specialities = request.POST['specialities']
-           
+        specialities = request.POST['specialities']  
         try:
             doctor= User.objects.create_user(username=username,email=email,password=password)
             doctor.first_name=fname
             doctor.last_name=lname
             doctor.save()
             Doctor.objects.create(image=image, contact=contact, gender=gender, medical=medical, position=position, specialities=specialities, type="doctor", status="Pending", user=doctor)
-
             error="no"
         except:
             error="yes"
     d={'error': error}
-    return render(request, 'doctor_signup.html', d)
+    return render(request, 'doctors/doctor_signup.html', d)
 
 
 def doctor_delete_own(request):
@@ -182,7 +175,7 @@ def doctor_add_appointment(request):
         except:
             error="yes"
     d={'error': error}
-    return render(request, 'doctor_add_appointment.html',d)
+    return render(request, 'doctors/doctor_add_appointment.html',d)
 
 
 def doctor_edit_appointment(request,pid):
@@ -198,25 +191,22 @@ def doctor_edit_appointment(request,pid):
         deadline = request.POST['deadline']
         fee = request.POST['fee']
         location = request.POST['location']
-
         appointment.title = title
         appointment.description = description
         appointment.time = time
         appointment.fee = fee
         appointment.location = location
-
         if date:
             appointment.date=date
         if deadline:
             appointment.deadline=deadline
-
         try:
             appointment.save()
             error="no"
         except:
             error="yes"
     d={'error': error, 'appointment':appointment}
-    return render(request, 'doctor_edit_appointment.html',d)
+    return render(request, 'doctors/doctor_edit_appointment.html',d)
 
 
 def doctor_appointment_takers(request,pid):
@@ -225,7 +215,7 @@ def doctor_appointment_takers(request,pid):
     appointment = Appointment.objects.get(id=pid)
     patient = appointment.patient.all()
     d = {'patient':patient}
-    return render(request, 'doctor_appointment_takers.html', d)
+    return render(request, 'doctors/doctor_appointment_takers.html', d)
 
 
 def doctor_appointments_list(request):
@@ -235,4 +225,4 @@ def doctor_appointments_list(request):
     doctor = Doctor.objects.get(user=user)
     appointment = Appointment.objects.filter(doctor=doctor)
     d = {'appointment':appointment}
-    return render(request, 'doctor_appointments_list.html', d)
+    return render(request, 'doctors/doctor_appointments_list.html', d)

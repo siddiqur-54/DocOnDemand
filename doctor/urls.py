@@ -1,12 +1,10 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from appointment import views
-from django.conf import settings
-from django.conf.urls.static import static
+from doctor import views
 
 urlpatterns = [
+    path('', views.doctor_login, name="doctor_login"),
     path('doctor_signup', views.doctor_signup, name="doctor_signup"),
-    path('doctor_login', views.doctor_login, name="doctor_login"),
     path('doctor_home', views.doctor_home, name="doctor_home"),
     path('doctor_add_appointment', views.doctor_add_appointment, name="doctor_add_appointment"),
     path('doctor_appointments_list', views.doctor_appointments_list, name="doctor_appointments_list"),
@@ -19,4 +17,5 @@ urlpatterns = [
     path('doctor_change_password', views.doctor_change_password, name="doctor_change_password"),
     path('doctor_logout', views.doctor_logout, name="doctor_logout"),
     path('doctor_edit_profile', views.doctor_edit_profile, name="doctor_edit_profile"),
+    path('doctor_login', views.doctor_login, name="doctor_login"),
 ]

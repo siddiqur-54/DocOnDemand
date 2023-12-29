@@ -53,14 +53,14 @@
     {% ifequal error "no" %}
     <script>
         alert("Appointment Posted Successfully");
-        window.location.replace("doctor_appointments_list");
+        window.location.replace("/doctors/doctor_appointments_list");
     </script>
     {% endifequal %}
 
     {% ifequal error "yes" %}
     <script>
         alert("Appointment Posting Failed");
-        window.location.replace("doctor_add_appointment");
+        window.location.replace("/doctors/doctor_add_appointment");
     </script>
     {% endifequal %}
     

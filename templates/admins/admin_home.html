@@ -28,14 +28,14 @@
 
     {% ifequal error "no" %}
     <script>
-        window.location.replace("admin_home");
+        window.location.replace("/admins/admin_home");
     </script>
     {% endifequal %}
 
     {% ifequal error "yes" %}
     <script>
         alert("Profile Editing Failed");
-        window.location.replace("admin_home");
+        window.location.replace("/admins/admin_home");
     </script>
     {% endifequal %}
 </div>

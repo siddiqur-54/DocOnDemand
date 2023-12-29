@@ -89,14 +89,14 @@
     {% ifequal error "no" %}
     <script>
         alert("Sign Up Successful");
-        window.location.replace("doctor_login");
+        window.location.replace("/doctors/doctor_login");
     </script>
     {% endifequal %}
 
     {% ifequal error "yes" %}
     <script>
         alert("Sign Up Failed");
-        window.location.replace("doctor_signup");
+        window.location.replace("/doctors/doctor_signup");
     </script>
     {% endifequal %}
     

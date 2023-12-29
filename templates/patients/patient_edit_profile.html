@@ -82,14 +82,14 @@
 
     {% ifequal error "no" %}
     <script>
-        window.location.replace("patient_home");
+        window.location.replace("/patients/patient_home");
     </script>
     {% endifequal %}
 
     {% ifequal error "yes" %}
     <script>
         alert("Profile Editing Failed");
-        window.location.replace("patient_edit_profile");
+        window.location.replace("/patients/patient_edit_profile");
     </script>
     {% endifequal %}
 </div>

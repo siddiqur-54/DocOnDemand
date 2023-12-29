@@ -62,14 +62,14 @@
 
     {% ifequal error "no" %}
     <script>
-        window.location.replace("doctor_home");
+        window.location.replace("/doctors/doctor_home");
     </script>
     {% endifequal %}
 
     {% ifequal error "yes" %}
     <script>
         alert("Profile Editing Failed");
-        window.location.replace("doctor_edit_profile");
+        window.location.replace("/doctors/doctor_edit_profile");
     </script>
     {% endifequal %}
     

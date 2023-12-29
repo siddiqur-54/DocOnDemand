@@ -1,6 +1,6 @@
 {% extends 'global_navigation.html' %}
 
-{% block title %}Doctor Login{%endblock title%}
+{% block title %}Patient Login{%endblock title%}
 
 {% block head %}
 
@@ -10,12 +10,12 @@
 
 {% block body %}
 <marquee class="bg-secondary text-light" width="100%" direction="right" height="25px">
-  DOCTOR LOGIN
+ PATEINT LOGIN
 </marquee>
 <div class="wrapper fadeInDown">
     <div id="formContent">
       <div class="fadeIn first">
-        <h6>DOCTOR LOGIN</h6>
+        <h6>PATIENT LOGIN</h6>
       </div>
   
       <form method="POST">
@@ -26,14 +26,14 @@
       </form>
   
       <div id="formFooter">
-        <a class="underlineHover" href="/doctor_signup">Not Signed Up?</a>
+        <a class="underlineHover" href="/patients/patient_signup">Not Signed Up?</a>
       </div>
   
     </div>
   </div>
   {% ifequal error "no" %}
     <script>
-        window.location.replace("doctor_home");
+        window.location.replace("/patients/patient_home");
     </script>
     {% endifequal %}
 
@@ -42,11 +42,4 @@
         alert("Invalid Login");
     </script>
     {% endifequal %}
-
-    {% ifequal error "not" %}
-    <script>
-        alert("Your Login status is pending");
-    </script>
-    {% endifequal %}
-
 {% endblock body %}
