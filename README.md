@@ -18,7 +18,7 @@ The website has three types of users
 - Can search by any keyword
 #### Patients' Feature
 - Can sign up, sign in, sign out, change password, delete account
-- Can see the job posted by the doctors
+- Can see the appointment posted by the doctors
 - Can apply or undo the apply for the the appointment
 - Can search by any keyword
 - Can see the previous taken appointments
